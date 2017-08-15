@@ -20,9 +20,6 @@ class App extends React.Component {
   componentDidMount(){
     onStart: () => console.log('start'),
     speachToText({
-      onStart: () => console.log('coo'),
-      onError: console.error,
-      onSoundEnd: () => console.log('end'),
       onNext: (data) => {
         console.log('final', data)
         this.setState(state => ({
