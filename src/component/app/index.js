@@ -8,7 +8,6 @@ class App extends React.Component {
   constructor(props){
     super(props)
     this.state = {
-      statements: [],
       text: '',
       fragment: '',
     }
@@ -19,12 +18,15 @@ class App extends React.Component {
   }
 
   componentDidMount(){
+    onStart: () => console.log('start'),
     speachToText({
+      onStart: () => console.log('coo'),
+      onError: console.error,
+      onSoundEnd: () => console.log('end'),
       onNext: (data) => {
         console.log('final', data)
         this.setState(state => ({
-          statements: [...state.statements, data.transcript],
-          text: state.text + data.transcript,
+          text: state.text + data.transcript + '.',
           fragment: '',
         }))
       },
@@ -32,7 +34,6 @@ class App extends React.Component {
         console.log('fragment', data)
         this.setState({fragment: data.transcript})
       },
-      onError: console.error,
     })
     .start()
   }
